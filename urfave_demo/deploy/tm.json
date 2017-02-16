@@ -1,0 +1,51 @@
+{
+    "kind": "Deployment", 
+    "spec": {
+        "replicas": 3, 
+        "selector": {
+            "matchLabels": {
+                "run": "aaa"
+            }
+        }, 
+        "template": {
+            "spec": {
+                "terminationGracePeriodSeconds": 30, 
+                "dnsPolicy": "ClusterFirst", 
+                "securityContext": {}, 
+                "restartPolicy": "Always", 
+                "containers": [
+                    {
+                        "image": "reg.dnt:5000/tomcat:7", 
+                        "name": "aaa", 
+                        "resources": {}, 
+                        "imagePullPolicy": "IfNotPresent"
+                    }
+                ]
+            }, 
+            "metadata": {
+                "labels": {
+                    "run": "aaa"
+                }
+            }
+        }, 
+        "strategy": {
+            "rollingUpdate": {
+                "maxSurge": 1, 
+                "maxUnavailable": 1
+            }, 
+            "type": "RollingUpdate"
+        }
+    }, 
+    "apiVersion": "extensions/v1beta1", 
+    "metadata": {
+        "name": "aaa", 
+        "generation": 13, 
+        "labels": {
+            "run": "aaa"
+        }, 
+        "namespace": "default", 
+        "annotations": {
+            "deployment.kubernetes.io/revision": "1"
+        }
+    }
+}

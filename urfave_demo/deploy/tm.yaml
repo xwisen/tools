@@ -1,18 +1,39 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: tm
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  generation: 13
+  labels:
+    run: aaa
+  name: aaa
   namespace: default
+  resourceVersion: "19339219"
 spec:
-  replicas: 1
+  replicas: 3
+  selector:
+    matchLabels:
+      run: aaa
   strategy:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
     type: RollingUpdate
   template:
+    metadata:
+      labels:
+        run: aaa
     spec:
       containers:
       - image: reg.dnt:5000/tomcat:7
         imagePullPolicy: IfNotPresent
-        name: tm
+        name: aaa
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
