@@ -9,6 +9,8 @@
 #  Last Modified: 2016-11-25 10:24:04
 # ***********************************************
 
+# https://github.com/burnettk/delete-docker-registry-image
+
 #eg: regc_search
 #eg: regc_search nginx
 function regc_search() {
